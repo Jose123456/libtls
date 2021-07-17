@@ -208,7 +208,7 @@ Let's revisit tls_read and tls_write:
 
 Unlike the synchronous IO case, where you can simply retry the same operation immediately, In the asynchronous, non-blocking case you need to wait and use poll to fine out when the descriptor is readable, or writeable again.
 
-This can seem very counter-intuitive when you are doing a write operation, but need to set the descriptor to POLLIN to fine out if it is readable before doing the write again.
+This can seem very counter-intuitive when you are doing a write operation, but need to set the descriptor to POLLIN to find out if it is readable before doing the write again.
 
 This occurs because tls_read, tls_write, and tls_handshake are *NOT* system calls, and will not exclusively read or write depending on what is happening at the tls layer underneath. As an example, you could be doing a handshake automatically during a read or write, or do renegotiation.
 
